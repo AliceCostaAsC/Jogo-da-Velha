@@ -1,0 +1,104 @@
+linha_0 = ['1','1','1']
+linha_1 = ['1','1','1']
+linha_2 = ['1','1','1']
+X = 0
+O = 0
+x = 0
+G = 0
+
+
+sala = [linha_0,linha_1,linha_2]
+
+
+while True:
+    while G < 5:
+        G = G + 1
+       
+
+        print("PRIMEIRO JOGADOR")
+        print('Digite as coordenadas')
+        linha = int(input('Digite a linha que vc queira alterar:'))
+        coluna = int(input('Digite a coluna que vc queira alterar:'))
+        sala     [linha][coluna]   = 'X'
+        print(linha_0)
+        print(linha_1)
+        print(linha_2)
+        
+        if  linha_0 == ['X','X','X']:
+            print("Você venceu JOGADOR UM")
+            break
+        
+        if  linha_1 == ['X','X','X']:
+            print("Você venceu JOGADOR UM")
+            break
+
+        if  linha_2 == ['X','X','X']:
+            print("Você venceu JOGADOR UM")
+            break
+
+        
+        if sala[0][0] + sala[1][0] + sala[2][0] == 'XXX':
+            print("Você venceu jogador um!")
+            break
+
+        if sala[0][1] + sala[1][1] + sala[2][1] == 'XXX':
+            print("Você venceu jogador um!")
+            break
+
+        if sala[0][2]  + sala[1][2] + sala[2][2] == 'XXX':
+            print("Você venceu jogador um!")
+            break
+
+        if G == 5:
+            break
+        print("SEGUNDO JOGADOR")
+        print('Digite as coordenadas')
+        linhad = int(input('Digite a linha que vc queira alterar:'))
+        colunad = int(input('Digite a coluna que vc queira alterar:'))
+        sala     [linhad][colunad] = 'O'
+        print(linha_0)
+        print(linha_1)
+        print(linha_2)
+
+        if linha_0 == ['O','O','O']:
+            print("Você venceu JOGADOR DOIS")
+            break
+
+        if linha_1 == ['O','O','O']:
+            print("voce venceu JOGADOR DOIS")
+            break
+
+        
+        if linha_2 == ['O','O','O']:
+            print("Você venceu JOGADOR DOIS")
+            break
+
+        if sala[0][0] + sala[1][0] + sala[2][0] == 'OOO':
+            print("Você venceu jogador dois!")
+            break
+
+        
+        if sala[0][1] + sala[1][1] + sala[2][1] == 'OOO':
+            print("Você venceu jogador dois!")
+            break
+
+       
+        if sala[0][2] + sala[1][2] + sala[2][2] == 'OOO':
+            print("Você venceu jogador dois!")
+            break
+           
+
+  
+    
+    sair = input("Deseja continuar sim[s] ou não [n]")
+    if(sair == 'n'):
+        break
+    if (sair == 's'):
+        G = 0
+
+        linha_0 = ['1','1','1']
+        linha_1 = ['1','1','1']
+        linha_2 = ['1','1','1']
+        sala = [linha_0,linha_1,linha_2]
+
+                
