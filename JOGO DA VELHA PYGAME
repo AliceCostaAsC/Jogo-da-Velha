@@ -10,7 +10,7 @@ pygame.init()
 tamanho = comprimento, altura = 600, 600
 janela = pygame.display.set_mode(tamanho)
 
-#Carrega obejeto imagem e "x" e "o" e renderiza para tamanho de 100x100
+#Carrega objeto imagem e "x" e "o" e renderiza para tamanho de 100x100
 xis = pygame.image.load ("C:/Users/senai/Music/xis.png")
 bola = pygame.image.load("C:/Users/senai/Music/bola.png")
 
