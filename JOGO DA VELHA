@@ -48,6 +48,20 @@ while True:
         if sala[0][2]  + sala[1][2] + sala[2][2] == 'XXX':
             print("Você venceu jogador um!")
             break
+             
+             
+        if sala[0][0]  + sala[1][1] + sala[2][2] == 'XXX':
+            print("Você venceu jogador um!")
+            break
+
+        if sala[0][2]  + sala[1][1] + sala[2][0] == 'XXX':
+            print("Você venceu jogador um!")
+            break
+
+        
+            
+            
+         
 
         if G == 5:
             break
@@ -84,6 +98,15 @@ while True:
 
        
         if sala[0][2] + sala[1][2] + sala[2][2] == 'OOO':
+            print("Você venceu jogador dois!")
+            break
+            
+            
+        if sala[0][0]  + sala[1][1] + sala[2][2] == 'OOO':
+            print("Você venceu jogador dois!")
+            break
+
+        if sala[0][2]  + sala[1][1] + sala[2][0] == 'OOO':
             print("Você venceu jogador dois!")
             break
            
