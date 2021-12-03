@@ -1,0 +1,291 @@
+import pygame
+import sys
+import time
+
+
+#Inicialização pygame
+pygame.init()
+
+#Estrutura da tela inicial
+tamanho = comprimento, altura = 600, 600
+janela = pygame.display.set_mode(tamanho)
+
+#Carrega obejeto imagem e "x" e "o" e renderiza para tamanho de 100x100
+xis = pygame.image.load ("C:/Users/senai/Music/xis.png")
+bola = pygame.image.load("C:/Users/senai/Music/bola.png")
+
+xis  = pygame.transform.scale(xis, (100,100))
+bola = pygame.transform.scale(bola,(100,100))
+
+#Variáveis# -- Cores
+preto = 0, 0, 0
+branco = 255, 255, 255
+vermelho = 255, 0, 0
+verde = 0, 255, 0
+azul = 0, 0, 255
+lightpink = (255, 182, 193, 255)
+sky_blue = (0,255,255)
+cores = [preto, branco, vermelho, verde, azul]
+jogadas = 1
+jogadaS = 1
+resto  = 0
+reste = 0
+soma_linha = 0
+linha_0 = ['1','2','3']
+linha_1 = ['4','5','6']
+linha_2 = ['7','8','9']
+sala = [linha_0,linha_1,linha_2]
+
+# -- Pos quadrantes
+quadrante_linha =  [ 50, 250, 450]
+quadrante_coluna = [ 50, 250, 450]
+
+
+#Preenche a janela com a cor branca (0: preto - 1: branco - 2: vermelho - 3: verde - 4:azul)
+janela.fill((255, 182, 193, 255)) 
+
+#Desenha os quadrantes do jogo da velha
+def desenha_quadro():
+    pygame.draw.line(janela, preto, (200,0),(200,600),5)
+    pygame.draw.line(janela, preto, (400,0),(400,600),5)
+    pygame.draw.line(janela, preto, (0,200),(600,200),5)
+    pygame.draw.line(janela, preto, (0,400),(600,400),5)
+    
+#Insere a imagem do xis em todos os quadrantes
+def faz_jogada(pos):
+    index_linha  = int(pos[0]/200)
+    index_coluna = int(pos[1]/200)
+
+    janela.blit(xis, (quadrante_linha[index_linha], quadrante_coluna[index_coluna]))
+    
+    if index_linha == 0 and index_coluna == 0:
+        linha_0 [0] = 'X'
+    
+    if index_linha == 0 and index_coluna == 1:
+        linha_1 [0] = 'X'
+   
+    if index_linha == 0 and index_coluna == 2:
+        linha_2 [0] = 'X'
+
+
+    
+    if index_linha == 1 and index_coluna == 0:
+        linha_0 [1] = 'X'
+        
+    if index_linha == 1 and index_coluna == 1:
+        linha_1 [1] = 'X'
+   
+    if index_linha == 1 and index_coluna == 2:
+        linha_2 [1] = 'X'
+        
+     if index_linha == 2 and index_coluna == 0:
+        linha_0 [2] = 'X'
+    
+    if index_linha == 2 and index_coluna == 1:
+        linha_1 [2] = 'X'
+   
+    if index_linha == 2 and index_coluna == 2:
+        linha_2 [2] = 'X'
+
+    print(linha_0)
+    print(linha_1)
+    print(linha_2)
+
+#Define o jogador 'X' como vencedor
+def jogador_UM():
+    vencedor_um = ' '
+
+    if  linha_0 [0] + linha_1[0] + linha_2[0] == 'XXX':
+        vencedor_um = ("Você venceu jogador um!")
+    
+
+    if linha_0 [1] + linha_1[1] + linha_2[1] == 'XXX':
+        vencedor_um = ("Você venceu jogador um!")
+        
+
+    if linha_0 [2] + linha_1[2] + linha_2[2] == 'XXX':
+        vencedor_um = ("Você venceu jogador um!")
+        
+
+    if  linha_0 [0] + linha_0[1] + linha_0[2] == 'XXX':
+        vencedor_um = ("Você venceu jogador um!")
+        
+
+    if linha_1 [0] + linha_1[1] + linha_1[2] == 'XXX':
+        vencedor_um = ("Você venceu jogador um!")
+    
+
+    if linha_2 [0] + linha_2[1] + linha_2[2] == 'XXX':
+        vencedor_um = ("Você venceu jogador um!")
+        
+                     
+#jogador um vence na linha secundária
+        
+    if  linha_0 [0] + linha_1[1] + linha_2[2] == 'XXX':
+        vencedor_um = ("Você venceu jogador um!")
+    
+
+    if linha_0[2]  + linha_1[1] + linha_2[0] == 'XXX':
+        vencedor_um = ("Você venceu jogador um!")
+
+          
+    return vencedor_um
+       
+
+
+def faz_jogadaz(post):
+    index_linha  = int(post[0]/200)
+    index_coluna = int(post[1]/200)
+
+    janela.blit(bola,(quadrante_linha[index_linha], quadrante_coluna[index_coluna]))    
+
+    if index_linha == 0 and index_coluna == 0:
+        linha_0 [0] = 'O'
+    
+    if index_linha == 0 and index_coluna == 1:
+        linha_1 [0] = 'O'
+   
+    if index_linha == 0 and index_coluna == 2:
+        linha_2 [0] = 'O'
+
+
+    
+    if index_linha == 1 and index_coluna == 0:
+        linha_0 [1] = 'O'
+    
+    if index_linha == 1 and index_coluna == 1:
+        linha_1 [1] = 'O'
+   
+    if index_linha == 1 and index_coluna == 2:
+        linha_2 [1] = 'O'
+
+
+     
+    if index_linha == 2 and index_coluna == 0:
+        linha_0 [2] = 'O'
+    
+    if index_linha == 2 and index_coluna == 1:
+        linha_1 [2] = 'O'
+   
+    if index_linha == 2 and index_coluna == 2:
+        linha_2 [2] = 'O'
+
+
+    print(linha_0)
+    print(linha_1)
+    print(linha_2)
+
+#Define o jogador 'O' como vencedor
+def jogador_dois():
+    vencedor_dois = ' '
+                         
+    if  linha_0 [0] + linha_1[0] + linha_2[0] == 'OOO':
+        vencedor_dois = ("Você venceu jogador dois!")
+      
+
+    if linha_0 [1] + linha_1[1] + linha_2[1] == 'OOO':
+        vencedor_dois = ("Você venceu jogador dois!")
+        
+
+    if linha_0 [2] + linha_1[2] + linha_2[2] == 'OOO':
+        vencedor_dois = ("Você venceu jogador dois!")
+        
+
+    if  linha_0 [0] + linha_0[1] + linha_0[2] == 'OOO':
+        vencedor_dois = ("Você venceu jogador dois!")
+        
+
+    if linha_1 [0] + linha_1[1] + linha_1[2] == 'OOO':
+        vencedor_dois = ("Você venceu jogador dois!")
+    
+
+    if linha_2 [0] + linha_2[1] + linha_2[2] == 'OOO':
+        vencedor_dois = ("Você venceu jogador dois!")
+        
+                     
+#jogador dois vence na linha secundária
+        
+    if  linha_0 [0] + linha_1[1] + linha_2[2] == 'OOO':
+        vencedor_dois = ("Você venceu jogador dois!")
+        
+
+    if linha_0[2]  + linha_1[1] + linha_2[0] == 'OOO':
+        vencedor_dois = ("Você venceu jogador dois!")
+        
+
+    return vencedor_dois
+
+        
+    
+while True:
+    desenha_quadro()
+    resto = jogadas % 2
+
+
+
+            
+    banana = jogador_UM()        
+    if banana != ' ':
+        print (banana)
+        break
+    
+    maca = jogador_dois()
+    if maca != ' ':
+        print(maca)
+        break
+    
+    if jogadas == 10:
+       print('DEU VELHA!')
+    
+    
+    
+       sair = input("Deseja jogar novamente sim[s] ou não [n]")
+       if(sair == 'n'):
+            break
+        
+       if (sair == 's'):
+           desenha_quadro()
+           jogadas = 1
+           janela.fill((255, 182, 193, 255)) 
+
+           
+           linha_0 = ['1','2','3']
+           linha_1 = ['4','5','6']
+           linha_2 = ['7','8','9']
+
+           
+           sala = [linha_0,linha_1,linha_2]
+         
+   
+
+         
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
+           
+            
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if resto == 1:
+               click_pos = pygame.mouse.get_pos()
+               faz_jogada(click_pos)
+               
+               jogadas = jogadas + 1
+            
+
+            if resto == 0: 
+               click_post = pygame.mouse.get_pos()
+               faz_jogadaz(click_post)
+                    
+               jogadas = jogadas + 1
+
+
+    
+    pygame.display.flip() #Atualiza a janela
+
+
+    
+
+
+
